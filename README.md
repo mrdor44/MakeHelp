@@ -89,13 +89,10 @@ And that's it! You have MakeHelp all configured and ready to go.
 
 ## Dependencies
 
-MakeHelp requires Python 2.7 with the `tabulate` library installed. To install dependencies:
+MakeHelp requires Python 3 with the `tabulate` library installed. To install dependencies:
 
 ```bash
-sudo apt install python2
-sudo apt install python2-pip
+sudo apt install python3
+sudo apt install python3-pip
+sudo pip3 install tabulate
 ```
-
-# Future Work
-
-* Change MakeHelp to work with Python 3 instead of Python 2.
