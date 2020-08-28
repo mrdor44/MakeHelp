@@ -45,8 +45,8 @@ def make_help(makefiles, should_show_private_rules):
 
     return textwrap.dedent("""\
     {rules}
-    
-    
+
+
     Undocumented Rules
     ------------------
     {undocumented_rules}
@@ -60,7 +60,7 @@ def make_help_rule(makefiles, rule_name):
         if rule_name in rule.names:
             return textwrap.dedent("""\
             Help about `make {}`:
-            
+
             {}
             """).format(rule_name, rule.long)
     return 'Rule `{}` not found'.format(rule_name)
@@ -73,17 +73,17 @@ def main():
         The rule to show help about.
         If none is given, help is given for all rules
     """))
-    parser.add_argument('makefiles', type=file, nargs='+', help='The path of the Makefile to show help about')
+    parser.add_argument('makefiles', type=argparse.FileType('r'), nargs='+', help='The path of the Makefile to show help about')
     args = parser.parse_args()
     try:
         if args.rule is None:
-            print textwrap.dedent("""\
+            print(textwrap.dedent("""\
                 Below are the rules provided by this Makefile.
                 For extended help on a specific rule, try `make help-rule` or `make rule-help`
-            """)
-            print make_help(args.makefiles, args.show_private_rules)
+            """))
+            print(make_help(args.makefiles, args.show_private_rules))
         else:
-            print make_help_rule(args.makefiles, args.rule)
+            print(make_help_rule(args.makefiles, args.rule))
     finally:
         for makefile in args.makefiles:
             makefile.close()
